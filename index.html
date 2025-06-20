@@ -27,7 +27,9 @@
     header {
       text-align: center;
       color: #66fcf1;
-      margin-bottom: 20px;
+      margin-bottom: 0px;
+      top: 0;
+      text-size :500px;
     }
 
     form {
@@ -37,7 +39,7 @@
       width: 90%;
       max-width: 350px;
       box-shadow: 0 0 10px rgba(0,0,0,0.6);
-      margin-top: 200px;
+      margin-top: 30px;
     }
 
     input, textarea, button {
@@ -58,6 +60,10 @@
       color: #000;
       font-weight: bold;
       cursor: pointer;
+    }
+    button:active {
+      background: #fff;
+      color: black;
     }
 
     .channel-btn {
@@ -94,7 +100,7 @@
 
   <form id="complaintForm">
     <h2>Input Your Complaint</h2>
-    <input type="email" id="email" name="email" placeholder="Your Email" required />
+    <input type="text" id="name" name="name" placeholder="Your Name" required />
     <textarea id="complaint" name="complaint" rows="5" placeholder="Your Complaint" required></textarea>
     <button type="submit">Send</button>
     <div class="channel-btn">
@@ -123,7 +129,7 @@
     document.getElementById("complaintForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
-      const email = document.getElementById("email").value;
+      const email = document.getElementById("name").value;
       const complaint = document.getElementById("complaint").value;
 
       db.collection("complaints").add({
@@ -140,9 +146,18 @@
     });
   </script>
   </div>
-    <footer>
     <p>&copy; <span id="year"></span> DarxTech. All rights reserved.</p>
-  </footer>
+    <p>
+      <a href="https//t.me/darxtex" target="_blank">Telegram |</a>
+      <a href="httpseheh"> <img src="whatsapp-icon.png">|
+</a>
+
+      <a href="hehe" target="_blank">YouTube |</a>
+     <a href="https">
+  <img src="github-logo.png">|
+</a>
+
+    </p>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
