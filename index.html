@@ -77,18 +77,11 @@
       font-weight: bold;
     }
 
-    footer {
-      font-size: 0.9em;
-      text-align: center;
-      color: #aaa;
-      background: black;
-      padding: 10px;
-      width: 100vw;
-      margin-top: 800px;
-    }
-    
     .content {
       flex: 1;
+    }
+    .footer {
+      color: yellow;
     }
   </style>
 </head>
@@ -117,6 +110,7 @@
     const firebaseConfig = {
       apiKey: "AIzaSyDIUxhVljm56kHtjyyYf_jlAw9nCh3NfWw",
       authDomain: "complaintapp-88900.firebaseapp.com",
+      databaseURL: "https://complaintapp-88900-default-rtdb.firebaseio.com/",
       projectId: "complaintapp-88900",
       storageBucket: "complaintapp-88900.appspot.com",
       messagingSenderId: "961770777137",
@@ -126,16 +120,25 @@
     const db = firebase.firestore();
 
     // Form submission
-    document.getElementById("complaintForm").addEventListener("submit", function(e) {
+    document.getElementById("complaintForm").addEventListener("submit", (e) => {
       e.preventDefault();
 
-      const email = document.getElementById("name").value;
+      const name = document.getElementById("name").value;
       const complaint = document.getElementById("complaint").value;
 
       db.collection("complaints").add({
-        email,
+        name,
         complaint,
         timestamp: new Date()
+        fetch("https://maker.ifttt.com/trigger/new_complaint/with/key/QPvSJVb", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        value1: name,
+        value2: complaint
+      })
+    })
+
       }).then(() => {
         alert("Your complaint has been submitted!");
         document.getElementById("complaintForm").reset();
@@ -147,16 +150,11 @@
   </script>
   </div>
     <p>&copy; <span id="year"></span> DarxTech. All rights reserved.</p>
-    <p>
+    <p class="footer">
       <a href="https//t.me/darxtex" target="_blank">Telegram |</a>
-      <a href="httpseheh"> <img src="whatsapp-icon.png">|
-</a>
-
-      <a href="hehe" target="_blank">YouTube |</a>
-     <a href="https">
-  <img src="github-logo.png">|
-</a>
-
+      <a href="https://whatsapp.com/channel/0029VbB2sQyISTkHzyZfDm2h" target="_blank">WhatsApp |</a>
+      <a href="https://youtube.com/@darx_tech?si=QhMzZ0a9RPhcc52v" target="_blank">YouTube |</a>
+      <a href="https://GitHub.com/DARX-TECH" target="_blank">GitHub |</a>
     </p>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
