@@ -82,13 +82,14 @@
     }
     .footer {
       color: yellow;
+      margin-top: 0;
     }
   </style>
 </head>
 <body>
   <div>
       <header>
-    <h1>DARX SUPPORT</h1>
+    <h1>DX SUPPORT</h1>
   </header>
 
   <form id="complaintForm">
@@ -101,55 +102,27 @@
     </div>
   </form>
   
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-
   <script>
-    // Initialize Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyDIUxhVljm56kHtjyyYf_jlAw9nCh3NfWw",
-      authDomain: "complaintapp-88900.firebaseapp.com",
-      databaseURL: "https://complaintapp-88900-default-rtdb.firebaseio.com/",
-      projectId: "complaintapp-88900",
-      storageBucket: "complaintapp-88900.appspot.com",
-      messagingSenderId: "961770777137",
-      appId: "1:961770777137:web:4f614a48baa382c1ab8310"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+    emailjs.init("Wcy67T9oROnRNHuqR");
 
-    // Form submission
-    document.getElementById("complaintForm").addEventListener("submit", (e) => {
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
       e.preventDefault();
-
-      const name = document.getElementById("name").value;
-      const complaint = document.getElementById("complaint").value;
-
-      db.collection("complaints").add({
-        name,
-        complaint,
-        timestamp: new Date()
-        fetch("https://maker.ifttt.com/trigger/new_complaint/with/key/QPvSJVb", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        value1: name,
-        value2: complaint
+      emailjs.send("service_tirp7fw", "template_b87uxnj", {
+        name: document.getElementById("name").value,
+        message: document.getElementById("message").value
       })
-    })
-
-      }).then(() => {
-        alert("Your complaint has been submitted!");
-        document.getElementById("complaintForm").reset();
-      }).catch(err => {
+      .then(() => {
+        alert("Your message has been sent!");
+        this.reset();
+      }, (err) => {
+        alert("Failed to send message.");
         console.error(err);
-        alert("Your complaint was not submitted.Try again.");
       });
     });
   </script>
+
   </div>
-    <p>&copy; <span id="year"></span> DarxTech. All rights reserved.</p>
+    <p class="loof">&copy; <span id="year"></span> DarxTech. All rights reserved.</p>
     <p class="footer">
       <a href="https//t.me/darxtex" target="_blank">Telegram |</a>
       <a href="https://whatsapp.com/channel/0029VbB2sQyISTkHzyZfDm2h" target="_blank">WhatsApp |</a>
