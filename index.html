@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
   <title>DARX SUPPORT</title>
   <style>
     body {
@@ -98,24 +99,24 @@
     <textarea id="complaint" name="complaint" rows="5" placeholder="Your Complaint" required></textarea>
     <button type="submit">Send</button>
     <div class="channel-btn">
-      <a href="https://whatsapp.com/channel/0029VbB2sQyISTkHzyZfDm2h" target="_blank">Visit Our Channel</a>
+      <a href="https://whatsapp.com/channel/0029VavHvjkGpLHXeXjMwA3b" target="_blank">Visit Our Channel</a>
     </div>
   </form>
   
   <script>
     emailjs.init("Wcy67T9oROnRNHuqR");
 
-    document.getElementById("contactForm").addEventListener("submit", function(e) {
+    document.getElementById("complaintForm").addEventListener("submit", function(e) {
       e.preventDefault();
       emailjs.send("service_tirp7fw", "template_b87uxnj", {
         name: document.getElementById("name").value,
-        message: document.getElementById("message").value
+        complaint: document.getElementById("complaint").value
       })
       .then(() => {
         alert("Your message has been sent!");
         this.reset();
       }, (err) => {
-        alert("Failed to send message.");
+        alert("!! Failed to send message. Try again.");
         console.error(err);
       });
     });
