@@ -3,6 +3,9 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+  <script>
+    emailjs.init("Wcy67T9oROnRNHuqR");
+  </script>
   <title>DARX SUPPORT</title>
   <style>
     body {
@@ -104,8 +107,6 @@
   </form>
   
   <script>
-    emailjs.init("Wcy67T9oROnRNHuqR");
-
     document.getElementById("complaintForm").addEventListener("submit", function(e) {
       e.preventDefault();
       emailjs.send("service_tirp7fw", "template_b87uxnj", {
@@ -134,4 +135,4 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
-</html>
+  </html>
